@@ -41,9 +41,54 @@ if uploaded_files:
     if len(dfs) > 0:
         df_music = pd.concat(dfs, ignore_index=True)
         
-        # Display the first few rows of the concatenated dataframe
-        st.write("First few rows of the concatenated dataframe:")
-        st.dataframe(df_music.head())
+        # Step 3: Select and filter specific columns
+        df_music = df_music[['Country', 'Custom ID', 'Asset Channel ID', 'Partner Revenue','Asset Labels','Asset ID']]
+        df_music = df_music[df_music['Partner Revenue'] > 0]
+        
+        # Step 4: Define the custom mapping function
+        def map_custom_id(value):
+            if 'hittmuzik' in value:
+                return 'Hitt Music'
+            elif 'hitt_'in value:
+                return 'Hitt Music'
+            elif 'atlanta' in value:
+                return 'Atlanta Yapım'
+            elif 'guven' in value:
+                return 'Guven Production'
+            elif 'tolga' in value:
+                return 'Tolga Ornek'
+            elif 'munev' in value:
+                return 'Munevver Oshan'
+            elif 'daphne' in value:
+                return 'Daphne Media'
+            elif 'istanbulplak' in value:
+                return 'İstanbul Plak'
+            elif 'muzikbir' in value:
+                return 'MuzikBir'
+            elif any(substring in value for substring in ('beng', 'mura', 'film', 'guve', 'egec', 'volk', 'ayla', 'snap', 'yonc', 'ozle', 'zeki', 'koli', 'ozge', 'dicl', 'isil', 'burh', 'fuly', 'sina', 'feri', 'fha_', 'ahiy', 'merz', 'gokc')):
+                return 'Yek Music'
+            elif 'incir' in value:
+                return 'Yek Music'
+            elif 'cocuk' in value:
+                return 'MuzikBir'
+            return value
+
+        # Apply the custom function to the 'Custom ID' column
+        df_music['Custom ID'] = df_music['Custom ID'].apply(lambda x: map_custom_id(x))
+
+        # Update specific 'Custom ID' based on 'Asset Labels'
+        df_music.loc[df_music['Asset Labels'] == 'Merzigo', 'Custom ID'] = 'Yek Music'
+
+        # List of values to filter
+        values_producers = ['MuzikBir', 'Hitt Music', 'İstanbul Plak', 'Yek Music', 'Atlanta Yapım', 'Guven Production', 'Munevver Oshan', 'Tolga Ornek', 'Daphne Media']
+
+        # Filter the DataFrame
+        filtered_df_for_revenue = df_music[df_music['Custom ID'].isin(values_producers)]
+        filtered_df_unlabel = df_music[~df_music['Custom ID'].isin(values_producers)]
+
+        # Display the first few rows of the unlabelled dataframe
+        st.write("First few rows of the unlabelled dataframe:")
+        st.dataframe(filtered_df_unlabel.head(8))
         
         # Sum of 'Partner Revenue' column
         if 'Partner Revenue' in df_music.columns:
