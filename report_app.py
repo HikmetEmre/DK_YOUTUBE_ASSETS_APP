@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
+import os
+os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '1000'
 #### Page Config ###
 st.set_page_config(
     page_title="DK YOUTUBE DATA ANALYSIS APP",
