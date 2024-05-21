@@ -89,14 +89,3 @@ if uploaded_files:
         # Display the first few rows of the unlabelled dataframe
         st.write("First few rows of the unlabelled dataframe:")
         st.dataframe(filtered_df_unlabel.head(8))
-        
-        # Sum of 'Partner Revenue' column
-        if 'Partner Revenue' in df_music.columns:
-            total_partner_revenue = df_music['Partner Revenue'].sum()
-            st.write(f"Sum of 'Partner Revenue' column: {total_partner_revenue}")
-        else:
-            st.write("'Partner Revenue' column not found in the uploaded CSV files.")
-    else:
-        st.write("No dataframes to concatenate.")
-else:
-    st.write("Please upload CSV files to proceed.")
