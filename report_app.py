@@ -183,7 +183,7 @@ if uploaded_files:
         filtered_df_for_revenue = df_music[df_music['Custom ID'].isin(values_producers)]
         filtered_df_unlabel = df_music[~df_music['Custom ID'].isin(values_producers)]
 
-        total_revenue_of_month = filtered_df_for_revenue['Partner Revenue'].sum()
+        total_revenue_of_month = df_music['Partner Revenue'].sum()
         st.write('The Total Income of This Month :', total_revenue_of_month)
 
         if not filtered_df_unlabel.empty:
