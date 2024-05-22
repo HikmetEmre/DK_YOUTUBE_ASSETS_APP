@@ -234,3 +234,53 @@ if uploaded_files:
         # Optionally, add a bar chart for visual representation
         st.bar_chart(tax_summary)
        
+        # Add a subheader for the final dashboard
+        st.subheader("**:red[FINAL DASHBOARD!!]**")
+
+        # Create the final DataFrame
+        final_df = revenue_summary.reset_index()
+        final_df.columns = ['Producers', 'Total Revenue']
+
+        # Add USA TAX column from tax_summary
+        final_df = final_df.merge(tax_summary.reset_index(), on='Producers', how='left')
+        final_df.columns = ['Producers', 'Total Revenue', 'USA TAX']
+
+        # Fill NaN values in 'USA TAX' with 0 (in case there are producers with no USA TAX)
+        final_df['USA TAX'] = final_df['USA TAX'].fillna(0)
+
+        # Calculate Net Revenue
+        final_df['Net Revenue'] = final_df['Total Revenue'] - final_df['USA TAX']
+
+        # Calculate DK Payment based on the producer
+        percentage_dict = {
+            'MuzikBir': 0.05, 
+            'Hitt Music': 0.10, 
+            'İstanbul Plak': 0.10, 
+            'Yek Music': 0.10, 
+            'Atlanta Yapım': 0.15, 
+            'Guven Production': 0.20, 
+            'Munevver Oshan': 0.20, 
+            'Tolga Ornek': 0.20, 
+            'Daphne Media': 1
+        }
+
+        # Function to calculate DK Payment
+        def calculate_dk_payment(producer, net_revenue):
+            return net_revenue * percentage_dict.get(producer, 0)
+
+        # Apply the function to calculate DK Payment
+        final_df['DK Payment'] = final_df.apply(lambda row: calculate_dk_payment(row['Producers'], row['Net Revenue']), axis=1)
+
+        # Calculate Producers Payment
+        final_df['Producers Payment'] = final_df['Net Revenue'] - final_df['DK Payment']
+
+        # Display the final DataFrame
+        st.write("### Final Dashboard")
+        st.dataframe(final_df)
+
+        # Optionally, display the final DataFrame as a styled table for better readability
+        st.table(final_df)
+
+        # Optionally, add a bar chart for visual representation of Total Revenue, USA TAX, Net Revenue, DK Payment, and Producers Payment
+        st.write("### Revenue Breakdown by Producers")
+        st.bar_chart(final_df.set_index('Producers')[['Total Revenue', 'USA TAX', 'Net Revenue', 'DK Payment', 'Producers Payment']])
