@@ -162,9 +162,7 @@ if uploaded_files:
             'Rovsen Sani': 'MuzikBir',
             'Simral Ferid': 'MuzikBir',
             'Ziya Selimov': 'MuzikBir',
-            'Genç Müzik Yapım': 'Muz
-
-ikBir',
+            'Genç Müzik Yapım': 'MuzikBir',
             'Mehriban Aslan': 'MuzikBir',
             'İlqar Vuqarlı': 'MuzikBir',
             'Hüseyin Ali': 'MuzikBir',
