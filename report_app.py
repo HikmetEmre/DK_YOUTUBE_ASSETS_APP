@@ -20,7 +20,8 @@ st.title("**:red[DK YOUTUBE MUSIC ASSET REPORTING]** ")
 st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION%20APP.png")
 
 ## WARNING ABOUT CSV FILES ###
-st.markdown("** Before you upload csv files here make the BIG Music Asset file name as :red[df1] and the Small Premium Music Asset file name as :red[df2]**. ")
+st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
+st.markdown("**Before you upload csv files here make the BIG Music Asset file name as :red[df1] and the Small Premium Music Asset file name as :red[df2].**")
 
 st.markdown("**After this uploading complete the software is going to complete all the data analysis step by step!**.")
 
