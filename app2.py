@@ -292,14 +292,15 @@ if uploaded_files:
         # Sidebar functionalities for identifying Asset Label and adding new customers
         with st.sidebar:
             st.header("Identify Asset Label from Asset Channel ID")
-            asset_channel_id = st.text_input("Enter Asset Channel ID")
-            if asset_channel_id:
-                matching_row = df_music[df_music['Asset Channel ID'] == asset_channel_id]
-                if not matching_row.empty:
-                    asset_label = matching_row['Asset Labels'].values[0]
-                    st.write(f"Asset Label: {asset_label}")
-                else:
-                    st.write("No matching Asset Label found.")
+    asset_channel_id = st.text_input("Enter Asset Channel ID")
+    if asset_channel_id:
+        # Filter the DataFrame based on the input Asset Channel ID
+        df_for_find = df_music[df_music['Asset Channel ID'] == asset_channel_id]
+        # Further filter rows where 'Custom ID' and 'Asset Labels' are not None
+        df_for_find = df_for_find[df_for_find['Custom ID'].notna() & df_for_find['Asset Labels'].notna()]
+        # Display the first 8 rows of the filtered DataFrame
+        st.write("Matching Rows:")
+        st.dataframe(df_for_find.head(8)[['Custom ID', 'Asset Labels']])
 
             st.header("Add New Customer")
             new_custom_id = st.text_input("Enter Custom ID")
