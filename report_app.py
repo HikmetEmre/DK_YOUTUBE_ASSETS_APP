@@ -50,21 +50,6 @@ if uploaded_files:
         df_music['Custom ID'] = df_music['Custom ID'].astype(str).str.lower()
         df_music = df_music[df_music['Partner Revenue'] > 0]
 
-        # Sidebar for identifying Asset Label from Asset Channel ID
-st.sidebar.header('Identify Asset Label')
-asset_channel_id_input = st.sidebar.text_input("Type Asset Channel ID here")
-
-if 'df_music' in locals():  # Check if df_music is already defined
-    if st.sidebar.button('Identify'):
-        if asset_channel_id_input:
-            matching_rows = df_music.loc[df_music['Asset Channel ID'] == asset_channel_id_input]
-            if not matching_rows.empty:
-                asset_label = matching_rows['Asset Label'].values[0]
-                st.sidebar.write(f'The Asset Label for Asset Channel ID {asset_channel_id_input} is: {asset_label}')
-            else:
-                st.sidebar.write(f'No Asset Label found for Asset Channel ID {asset_channel_id_input}')
-else:
-    st.sidebar.write("Upload the CSV files first to enable Asset Label identification.")
 
         # Step 4: Define the custom mapping function
         def map_custom_id(value):
