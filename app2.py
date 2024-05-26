@@ -1,3 +1,13 @@
+To ensure that the sidebar code works correctly, it needs to be executed after the DataFrame (`df_music`) is defined. However, since the CSV files need to be uploaded before `df_music` is defined, the sidebar for identifying the Asset Label should be interactive only after the file upload and DataFrame creation process. 
+
+Here's the adjusted code structure:
+
+1. The sidebar for identifying the Asset Label and adding new customers is placed inside a conditional block that checks if `df_music` is already defined.
+2. The file upload and DataFrame creation process happen first.
+
+Here is the revised code:
+
+```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -25,36 +35,6 @@ st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
 st.markdown("**Before you upload csv files here make the BIG Music Asset file name as :red[df1] and the Small Premium Music Asset file name as :red[df2].**")
 
 st.markdown("**After this uploading complete the software is going to complete all the data analysis step by step!**.")
-
-# Sidebar for identifying Asset Label from Asset Channel ID
-st.sidebar.header('Identify Asset Label')
-asset_channel_id_input = st.sidebar.text_input("Type Asset Channel ID here")
-
-if 'df_music' in locals():  # Check if df_music is already defined
-    if st.sidebar.button('Identify'):
-        if asset_channel_id_input:
-            matching_rows = df_music.loc[df_music['Asset Channel ID'] == asset_channel_id_input]
-            if not matching_rows.empty:
-                asset_label = matching_rows['Asset Label'].values[0]
-                st.sidebar.write(f'The Asset Label for Asset Channel ID {asset_channel_id_input} is: {asset_label}')
-            else:
-                st.sidebar.write(f'No Asset Label found for Asset Channel ID {asset_channel_id_input}')
-else:
-    st.sidebar.write("Upload the CSV files first to enable Asset Label identification.")
-
-# Sidebar for adding new customers
-st.sidebar.header('Add New Customer')
-new_custom_id = st.sidebar.text_input("Type Custom ID here")
-new_asset_label = st.sidebar.text_input("Type Asset Labels here")
-new_producer_name = st.sidebar.text_input("Type the name of the Producer here")
-
-if 'df_music' in locals():  # Check if df_music is already defined
-    if st.sidebar.button('Add'):
-        if new_custom_id and new_asset_label and new_producer_name:
-            asset_label_to_custom_id[new_asset_label] = new_producer_name
-            st.sidebar.write(f'Added new mapping: {new_asset_label} -> {new_producer_name}')
-else:
-    st.sidebar.write("Upload the CSV files first to enable adding new customers.")
 
 # Step 1: Upload multiple CSVs
 uploaded_files = st.file_uploader("Upload multiple CV CSV files", type="csv", accept_multiple_files=True)
@@ -188,7 +168,9 @@ if uploaded_files:
             'Mahmud Mikayilli': 'MuzikBir',
             'Mardan Asgar': 'MuzikBir',
             'Mojtaba Agharezaei': 'MuzikBir',
-            'Murad Elizade': 'MuzikBir',
+            'Murad
+
+ Elizade': 'MuzikBir',
             'Murad Imisli': 'MuzikBir',
             'Nurlan Goranboylu': 'MuzikBir',
             'Rovsen Sani': 'MuzikBir',
@@ -318,3 +300,26 @@ if uploaded_files:
         # Optionally, add a bar chart for visual representation of Total Revenue, USA TAX, Net Revenue, DK Payment, and Producers Payment
         st.write("### Revenue Breakdown by Producers")
         st.bar_chart(final_df.set_index('Producers')[['Total Revenue', 'USA TAX', 'Net Revenue', 'DK Payment', 'Producers Payment']])
+
+        # Sidebar functionalities for identifying Asset Label and adding new customers
+        with st.sidebar:
+            st.header("Identify Asset Label from Asset Channel ID")
+            asset_channel_id = st.text_input("Enter Asset Channel ID")
+            if asset_channel_id:
+                matching_row = df_music[df_music['Asset Channel ID'] == asset_channel_id]
+                if not matching_row.empty:
+                    asset_label = matching_row['Asset Labels'].values[0]
+                    st.write(f"Asset Label: {asset_label}")
+                else:
+                    st.write("No matching Asset Label found.")
+
+            st.header("Add New Customer")
+            new_custom_id = st.text_input("Enter Custom ID")
+            new_asset_label = st.text_input("Enter Asset Labels")
+            new_producer = st.text_input("Enter Producer")
+            if st.button("Add Customer"):
+                if new_custom_id and new_asset_label and new_producer:
+                    asset_label_to_custom_id[new_asset_label] = new_producer
+                    st.write("New customer added successfully.")
+                else:
+                    st.write("Please fill in all fields.")
