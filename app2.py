@@ -158,9 +158,7 @@ if uploaded_files:
             'Mahmud Mikayilli': 'MuzikBir',
             'Mardan Asgar': 'MuzikBir',
             'Mojtaba Agharezaei': 'MuzikBir',
-            'Murad
-
- Elizade': 'MuzikBir',
+            'Murad Elizade': 'MuzikBir',
             'Murad Imisli': 'MuzikBir',
             'Nurlan Goranboylu': 'MuzikBir',
             'Rovsen Sani': 'MuzikBir',
