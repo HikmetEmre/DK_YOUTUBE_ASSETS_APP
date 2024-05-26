@@ -290,7 +290,7 @@ if uploaded_files:
         st.bar_chart(final_df.set_index('Producers')[['Total Revenue', 'USA TAX', 'Net Revenue', 'DK Payment', 'Producers Payment']])
 
         # Sidebar functionalities for identifying Asset Label and adding new customers
-        with st.sidebar:
+        st.sidebar:
     st.header("Identify Asset Label from Asset Channel ID")
     asset_channel_id = st.text_input("Enter Asset Channel ID")
     if asset_channel_id:
