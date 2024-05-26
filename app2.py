@@ -291,7 +291,7 @@ if uploaded_files:
 
         # Sidebar functionalities for identifying Asset Label and adding new customers
         with st.sidebar:
-            st.header("Identify Asset Label from Asset Channel ID")
+    st.header("Identify Asset Label from Asset Channel ID")
     asset_channel_id = st.text_input("Enter Asset Channel ID")
     if asset_channel_id:
         # Filter the DataFrame based on the input Asset Channel ID
@@ -302,13 +302,13 @@ if uploaded_files:
         st.write("Matching Rows:")
         st.dataframe(df_for_find.head(8)[['Custom ID', 'Asset Labels']])
 
-            st.header("Add New Customer")
-            new_custom_id = st.text_input("Enter Custom ID")
-            new_asset_label = st.text_input("Enter Asset Labels")
-            new_producer = st.text_input("Enter Producer")
-            if st.button("Add Customer"):
-                if new_custom_id and new_asset_label and new_producer:
-                    asset_label_to_custom_id[new_asset_label] = new_producer
-                    st.write("New customer added successfully.")
-                else:
-                    st.write("Please fill in all fields.")
+    st.header("Add New Customer")
+    new_custom_id = st.text_input("Enter Custom ID")
+    new_asset_label = st.text_input("Enter Asset Labels")
+    new_producer = st.text_input("Enter Producer")
+    if st.button("Add Customer"):
+        if new_custom_id and new_asset_label and new_producer:
+            asset_label_to_custom_id[new_asset_label] = new_producer
+            st.write("New customer added successfully.")
+        else:
+            st.write("Please fill in all fields.")
