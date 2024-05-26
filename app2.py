@@ -291,7 +291,7 @@ if uploaded_files:
 
         #  For identifying Asset Owners From Asset ID and adding new customers
 
-    st.write("### Input Unkown Asset ID's Asset Channel ID to see who uploaded!!")
+    st.write("### Input Unkown **:blue[Asset ID's]** **:red[Asset Channel ID]** to see who uploaded!!")
     asset_channel_id = st.text_input("Enter Asset Channel ID")
     if asset_channel_id:
         # Filter the DataFrame based on the input Asset Channel ID
