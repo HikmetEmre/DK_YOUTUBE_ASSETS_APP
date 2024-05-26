@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import os
 os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '1000'
+
 #### Page Config ###
 st.set_page_config(
     page_title="DK YOUTUBE DATA ANALYSIS APP",
@@ -17,7 +18,7 @@ st.set_page_config(
 st.title("**:red[DK YOUTUBE MUSIC ASSET REPORTING]** ")
 
 ### Adding Image ###
-st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION%20APP.png")
+st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/music_data_app_image.png")
 
 ## WARNING ABOUT CSV FILES ###
 st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
@@ -46,10 +47,9 @@ if uploaded_files:
         df_music = pd.concat(dfs, ignore_index=True)
         
         # Step 3: Select and filter specific columns
-        df_music = df_music[['Country','Asset Title', 'Custom ID','Asset ID', 'Asset Channel ID', 'Partner Revenue','Asset Labels']]
+        df_music = df_music[['Country','Asset Title', 'Custom ID','Asset ID', 'Asset Channel ID', 'Partner Revenue','Asset Labels','Label','Artist']]
         df_music['Custom ID'] = df_music['Custom ID'].astype(str).str.lower()
         df_music = df_music[df_music['Partner Revenue'] > 0]
-
 
         # Step 4: Define the custom mapping function
         def map_custom_id(value):
@@ -288,3 +288,27 @@ if uploaded_files:
         # Optionally, add a bar chart for visual representation of Total Revenue, USA TAX, Net Revenue, DK Payment, and Producers Payment
         st.write("### Revenue Breakdown by Producers")
         st.bar_chart(final_df.set_index('Producers')[['Total Revenue', 'USA TAX', 'Net Revenue', 'DK Payment', 'Producers Payment']])
+
+        #  For identifying Asset Owners From Asset ID and adding new customers
+
+    st.write("### Input **:red[Asset Channel ID]** of **:blue[Unknown Asset ID's]**  to see who uploaded!!")
+    asset_channel_id = st.text_input("Enter Asset Channel ID")
+    if asset_channel_id:
+        # Filter the DataFrame based on the input Asset Channel ID
+        df_for_find = df_music[df_music['Asset Channel ID'] == asset_channel_id]
+        # Further filter rows where 'Custom ID' and 'Asset Labels' are not None
+        df_for_find = df_for_find[df_for_find['Custom ID'].notna() & df_for_find['Asset Labels'].notna()]
+        # Display the first 8 rows of the filtered DataFrame
+        st.write("Matching Rows:")
+        st.dataframe(df_for_find.head(8)[['Custom ID', 'Asset Labels']])
+
+    st.header("Add New Customer")
+    new_custom_id = st.text_input("Enter Custom ID")
+    new_asset_label = st.text_input("Enter Asset Labels")
+    new_producer = st.text_input("Enter Producer")
+    if st.button("Add Customer"):
+        if new_custom_id and new_asset_label and new_producer:
+            asset_label_to_custom_id[new_asset_label] = new_producer
+            st.write("New customer added successfully.")
+        else:
+            st.write("Please fill in all fields.")
