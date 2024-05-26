@@ -1,13 +1,3 @@
-To ensure that the sidebar code works correctly, it needs to be executed after the DataFrame (`df_music`) is defined. However, since the CSV files need to be uploaded before `df_music` is defined, the sidebar for identifying the Asset Label should be interactive only after the file upload and DataFrame creation process. 
-
-Here's the adjusted code structure:
-
-1. The sidebar for identifying the Asset Label and adding new customers is placed inside a conditional block that checks if `df_music` is already defined.
-2. The file upload and DataFrame creation process happen first.
-
-Here is the revised code:
-
-```python
 import streamlit as st
 import pandas as pd
 import numpy as np
