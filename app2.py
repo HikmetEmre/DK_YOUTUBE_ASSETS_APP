@@ -291,7 +291,7 @@ if uploaded_files:
 
         # Sidebar functionalities for identifying Asset Label and adding new customers
         with st.sidebar:
-            t.header("Identify Asset Label from Asset Channel ID")
+            st.header("Identify Asset Label from Asset Channel ID")
     asset_channel_id = st.text_input("Enter Asset Channel ID")
     if asset_channel_id:
         # Filter the DataFrame based on the input Asset Channel ID
