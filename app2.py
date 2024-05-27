@@ -19,7 +19,7 @@ st.set_page_config(
 st.title("**:red[DK YOUTUBE MUSIC ASSET REPORTING]** ")
 
 ### Adding Image ###
-st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/music_data_app_image.png")
+st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION_image_2.pngg")
 
 ## WARNING ABOUT CSV FILES ###
 st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
