@@ -8,7 +8,7 @@ os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '1000'
 #### Page Config ###
 st.set_page_config(
     page_title="DK YOUTUBE DATA ANALYSIS APP",
-    page_icon="https://img.freepik.com/premium-photo/youtube-logo-video-player-3d-design-video-media-player-interface_41204-12379.jpg",
+    page_icon="https://cdn-icons-png.flaticon.com/512/152/152810.png",
     menu_items={
         "Get help": "mailto:hikmetemreguler@gmail.com",
         "About": "For More Information\n" + "https://github.com/HikmetEmre/City_Estimator"
@@ -19,7 +19,7 @@ st.set_page_config(
 st.title("**:red[DK YOUTUBE MUSIC ASSET REPORTING]** ")
 
 ### Adding Image ###
-st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION_image_2.pngg")
+st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION_image_2.png")
 
 ## WARNING ABOUT CSV FILES ###
 st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
