@@ -52,123 +52,54 @@ if uploaded_files:
         df_music = df_music[df_music['Partner Revenue'] > 0]
 
         # Step 4: Define the custom mapping function
-        def map_custom_id(value):
-            if 'hittmuzik' in value:
-                return 'Hitt Music'
-            elif 'hitt_'in value:
-                return 'Hitt Music'
-            elif 'atlanta' in value:
-                return 'Atlanta Yapım'
-            elif 'guven' in value:
-                return 'Guven Production'
-            elif 'tolga' in value:
-                return 'Tolga Ornek'
-            elif 'munev' in value:
-                return 'Munevver Oshan'
-            elif 'daphne' in value:
-                return 'Daphne Media'
-            elif 'istanbulplak' in value:
-                return 'İstanbul Plak'
-            elif 'muzikbir' in value:
-                return 'MuzikBir'
-            elif any(substring in value for substring in ('beng', 'mura', 'film', 'guve', 'egec', 'volk', 'ayla', 'snap', 'yonc', 'ozle', 'zeki', 'koli', 'ozge', 'dicl', 'isil', 'burh', 'fuly', 'sina', 'feri', 'fha_', 'ahiy', 'merz', 'gokc')):
-                return 'Yek Music'
-            elif 'incir' in value:
-                return 'Yek Music'
-            elif 'cocuk' in value:
-                return 'MuzikBir'
-            return value
 
+        def assign_producer(custom_id):
+    if 'tolga' in custom_id:
+        return 'Tolga Ornek'
+    elif 'anibera' in custom_id:
+        return 'Anibera Tv'
+    elif 'boyutfilm' in custom_id:
+        return 'Boyut Film'
+    elif 'muhtesemfilm' in custom_id:
+        return 'Muhtesem Film'
+    elif 'nuribilgeceylan' in custom_id:
+        return 'Nuri Bilge Ceylan'
+    elif 'zekidemirkubuz' in custom_id:
+        return 'Zeki Demirkubuz'
+    elif '35mm_enkolaytarifler' in custom_id:
+        return '35mm'
+    elif 'limityapim' in custom_id:
+        return 'Limit Yapım'
+    elif 'muzikbir' in custom_id:
+        return 'MuzikBir'
+    elif 'mnsfilm' in custom_id:
+        return 'Mns Film'
+    else:
+        producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
+                         'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin']
+        for producer in producer_list:
+            if producer in custom_id:
+                return 'Daphne'
+        return custom_id  # or whatever default value you want to assign
         # Apply the custom function to the 'Custom ID' column
-        df_music['Custom ID'] = df_music['Custom ID'].apply(lambda x: map_custom_id(x))
+        df_music['Custom ID'] = df_music['Custom ID'].apply(assign_producer)
 
         # New step: Update 'Custom ID' based on 'Asset Labels'
         asset_label_to_custom_id = {
-            'Akbaş Müzik': 'Daphne Media',
-            'Alim Yapım': 'Yek Music',
-            'Alov Music': 'Yek Music',
-            'Atlanta Film Yapım': 'Atlanta Yapım',
-            'Ayaz Babayev': 'Yek Music',
-            'Daphne Media': 'Daphne Media',
-            'Dj Woywodo': 'Yek Music',
-            'Dj Xonano': 'Yek Music',
-            'DMC': 'Hitt Music',
-            'Elçin Meherremov': 'Yek Music',
-            'Fexri Elesgerli': 'Yek Music',
-            'Gig Music': 'Yek Music',
-            'Güven Prodüksiyon': 'Guven Production',
-            'Hitt Müzik': 'Hitt Music',
-            'İstanbul Plak': 'İstanbul Plak',
-            'Media Show': 'Yek Music',
-            'Murat Dalkılıç': 'Yek Music',
-            'Nuray Meherov': 'Yek Music',
-            'Rahman Aliyev': 'Yek Music',
-            'Seymur Memmedov': 'Yek Music',
-            'Stüdyo Net': 'Munevver Oshan',
-            'Xeyal Huseyn': 'Yek Music',
-            'Xumar Qedimova': 'Yek Music',
-            'Zenfira İbrahimova': 'Yek Music',
-            'Bengu': 'Yek Music',
-            'Arda Han': 'Yek Music',
-            'Duygu': 'Yek Music',
-            'Elçin Orçun': 'Yek Music',
-            'MMD': 'Yek Music',
-            'Ege Can Sal': 'Yek Music',
-            'Volkan Konak': 'Yek Music',
-            'Snapmuse': 'Yek Music',
-            'Yonca Lodi': 'Yek Music',
-            'Özlem Ağrı': 'Yek Music',
-            'Zeki Güner': 'Yek Music',
-            'Koliva': 'Yek Music',
-            'Özge Fışkın': 'Yek Music',
-            'Dicle Olcay': 'Yek Music',
-            'Işıl Ayman': 'Yek Music',
-            'Burhan Bayar': 'Yek Music',
-            'Fulya Koç': 'Yek Music',
-            'Sinan Akçıl': 'Yek Music',
-            'Feride Hilal Akın': 'Yek Music',
-            'Ahiyan': 'Yek Music',
-            'Merzigo': 'Yek Music',
-            'Gökçe Türk': 'Yek Music',
-            'Süreç Medya': 'MuzikBir',
-            'Atalay Prodüksiyon': 'MuzikBir',
-            'Atalay Production': 'MuzikBir',
-            'Berekat Yayınevi': 'MuzikBir',
-            'Fahrettin Tiryaki Music': 'MuzikBir',
-            'Marmara Müzik': 'MuzikBir',
-            'Metropol Müzik': 'MuzikBir',
-            'Metropol Müzik Yapım': 'MuzikBir',
-            'Asır Ajans': 'MuzikBir',
-            'Hayal Evim Müzik': 'MuzikBir',
-            'HB Müzik': 'MuzikBir',
-            'Işık Yapım': 'MuzikBir',
-            'Nasihat Yayınları': 'MuzikBir',
-            'Vuqarlı Media': 'MuzikBir',
+            'Nuri Bilge Ceylan': 'Nuri Bilge Ceylan',
             'Tolga Örnek': 'Tolga Ornek',
-            'Reyhani Yapım': 'MuzikBir',
-            'Alvarlı Efe Hazretleri Vakfı': 'MuzikBir',
-            'Mortaza Ayrumlu': 'MuzikBir',
-            'Asim Rasimoglu': 'MuzikBir',
-            'Dj Kamran MM': 'MuzikBir',
-            'Elcin Celilli': 'MuzikBir',
-            'Emir Tovuzlu': 'MuzikBir',
-            'Ferhad Bicare': 'MuzikBir',
-            'Ferid Ehmedzade': 'MuzikBir',
-            'Ferrux Haşimi': 'MuzikBir',
-            'Mahmud Mikayilli': 'MuzikBir',
-            'Mardan Asgar': 'MuzikBir',
-            'Mojtaba Agharezaei': 'MuzikBir',
-            'Murad Elizade': 'MuzikBir',
-            'Murad Imisli': 'MuzikBir',
-            'Nurlan Goranboylu': 'MuzikBir',
-            'Rovsen Sani': 'MuzikBir',
-            'Simral Ferid': 'MuzikBir',
-            'Ziya Selimov': 'MuzikBir',
-            'Genç Müzik Yapım': 'MuzikBir',
-            'Mehriban Aslan': 'MuzikBir',
-            'İlqar Vuqarlı': 'MuzikBir',
-            'Hüseyin Ali': 'MuzikBir',
-            'Müzikbir': 'MuzikBir'
+            'Boyut Film': 'Boyut Film',
+            'Anibera TV': 'Anibera TV',
+            'Atlanta Film Yapım': 'Atlanta Yapım',
+            'Muhteşem Film': 'Muhtesem Film',
+            'Daphne Media': 'Daphne',
+            'Mns Film': 'Mns Film',
+            'Müzikbir': 'MuzikBir',
+            'Zeki Demirkubuz': 'Zeki Demirkubuz',
+            'Limit Yapım': 'Limit Yapım',
+            'Sıfır Bir': 'Daphne',
+            'Akıllı Bıdık': 'Daphne',
+            'Akıllı Bıdık': 'Daphne'
         }
 
         # Apply the mapping to the 'Custom ID' column based on 'Asset Labels'
@@ -178,7 +109,7 @@ if uploaded_files:
         )
 
         # List of values to filter
-        values_producers = ['MuzikBir', 'Hitt Music', 'İstanbul Plak', 'Yek Music', 'Atlanta Yapım', 'Guven Production', 'Munevver Oshan', 'Tolga Ornek', 'Daphne Media']
+        values_producers = ['Tolga Ornek', 'Boyut Film', 'Muhtesem Film', 'Anibera TV', 'Mns Film', 'MuzikBir', 'Daphne', 'Nuri Bilge Ceylan', 'Zeki Demirkubuz','Limit Yapım']
 
         # Filter the DataFrame
         filtered_df_for_revenue = df_music[df_music['Custom ID'].isin(values_producers)]
@@ -257,15 +188,16 @@ if uploaded_files:
 
         # Calculate DK Payment based on the producer
         percentage_dict = {
-            'MuzikBir': 0.05, 
-            'Hitt Music': 0.10, 
-            'İstanbul Plak': 0.10, 
-            'Yek Music': 0.10, 
-            'Atlanta Yapım': 0.15, 
-            'Guven Production': 0.20, 
-            'Munevver Oshan': 0.20, 
-            'Tolga Ornek': 0.20, 
-            'Daphne Media': 1
+           'MuzikBir': 0.05, 
+            'Zeki Demirkubuz': 0.10, 
+            'Nuri Bilge Ceylan': 0.20, 
+            'Muhtesem Film': 0.20, 
+            'Mns Film': 0.20, 
+            'Boyut Film': 0.20, 
+            'Anibera Tv': 0.20, 
+            'Tolga Ornek': 0.20,
+            'Limit Yapım': 0.20,
+            'Daphne': 1
         }
 
         # Function to calculate DK Payment
