@@ -23,7 +23,7 @@ st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/mai
 
 ## WARNING ABOUT CSV FILES ###
 st.subheader("**:red[WARNING PLEASE READ THE DESCRIPTION BELOW!!]**")
-st.markdown("**Before you upload csv files here make the BIG NON-MUSIC Asset file name as :red[df1] and the Small Premium NON-MUSIC Assets FILES name as :red[df2] and :red[df3].**")
+st.markdown("**Before you upload csv files here make the BIG NON-MUSIC Asset file name as :blue[df1] and the Small Premium NON-MUSIC Assets FILES name as :red[df2] and :red[df3].**")
 
 st.markdown("**After this uploading complete the software is going to complete all the data analysis step by step!**.")
 
