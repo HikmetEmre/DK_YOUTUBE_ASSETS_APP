@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
+
 os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '1000'
 
 #### Page Config ###
@@ -53,34 +54,35 @@ if uploaded_files:
 
         # Step 4: Define the custom mapping function
 
- def assign_producer(custom_id):
-    if 'tolga' in custom_id:
-        return 'Tolga Ornek'
-    elif 'anibera' in custom_id:
-        return 'Anibera Tv'
-    elif 'boyutfilm' in custom_id:
-        return 'Boyut Film'
-    elif 'muhtesemfilm' in custom_id:
-        return 'Muhtesem Film'
-    elif 'nuribilgeceylan' in custom_id:
-        return 'Nuri Bilge Ceylan'
-    elif 'zekidemirkubuz' in custom_id:
-        return 'Zeki Demirkubuz'
-    elif '35mm_enkolaytarifler' in custom_id:
-        return '35mm'
-    elif 'limityapim' in custom_id:
-        return 'Limit Yapım'
-    elif 'muzikbir' in custom_id:
-        return 'MuzikBir'
-    elif 'mnsfilm' in custom_id:
-        return 'Mns Film'
-    else:
-        producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
-                         'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin']
-        for producer in producer_list:
-            if producer in custom_id:
-                return 'Daphne'
-        return custom_id  # or whatever default value you want to assign
+        def assign_producer(custom_id):
+            if 'tolga' in custom_id:
+                return 'Tolga Ornek'
+            elif 'anibera' in custom_id:
+                return 'Anibera Tv'
+            elif 'boyutfilm' in custom_id:
+                return 'Boyut Film'
+            elif 'muhtesemfilm' in custom_id:
+                return 'Muhtesem Film'
+            elif 'nuribilgeceylan' in custom_id:
+                return 'Nuri Bilge Ceylan'
+            elif 'zekidemirkubuz' in custom_id:
+                return 'Zeki Demirkubuz'
+            elif '35mm_enkolaytarifler' in custom_id:
+                return '35mm'
+            elif 'limityapim' in custom_id:
+                return 'Limit Yapım'
+            elif 'muzikbir' in custom_id:
+                return 'MuzikBir'
+            elif 'mnsfilm' in custom_id:
+                return 'Mns Film'
+            else:
+                producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
+                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin']
+                for producer in producer_list:
+                    if producer in custom_id:
+                        return 'Daphne'
+                return custom_id  # or whatever default value you want to assign
+
         # Apply the custom function to the 'Custom ID' column
         df_music['Custom ID'] = df_music['Custom ID'].apply(assign_producer)
 
@@ -131,7 +133,7 @@ if uploaded_files:
         else:
             st.write("There is no unidentified data for this month!")
 
-        # Rename the 'Custom ID' column to 'Producers'
+        # Rename the 'Custom ID' column
         filtered_df_for_revenue.rename(columns={'Custom ID': 'Producers'}, inplace=True)
 
         # Group by 'Producers' and sum 'Partner Revenue'
@@ -188,7 +190,7 @@ if uploaded_files:
 
         # Calculate DK Payment based on the producer
         percentage_dict = {
-           'MuzikBir': 0.05, 
+            'MuzikBir': 0.05, 
             'Zeki Demirkubuz': 0.10, 
             'Nuri Bilge Ceylan': 0.20, 
             'Muhtesem Film': 0.20, 
