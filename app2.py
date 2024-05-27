@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # Title of the app
-st.title("**:red[DK YOUTUBE MUSIC ASSET REPORTING]** ")
+st.title("**:blue[DK YOUTUBE NON MUSIC ASSET REPORTING]** ")
 
 ### Adding Image ###
 st.image("https://raw.githubusercontent.com/HikmetEmre/DK_YOUTUBE_ASSETS_APP/main/YOUTUBE%20ASSET%20DATA%20MANIPULATION_image_2.png")
