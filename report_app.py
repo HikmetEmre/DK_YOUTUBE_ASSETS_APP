@@ -7,7 +7,7 @@ os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '1000'
 #### Page Config ###
 st.set_page_config(
     page_title="DK YOUTUBE DATA ANALYSIS APP",
-    page_icon="https://img.freepik.com/premium-photo/youtube-logo-video-player-3d-design-video-media-player-interface_41204-12379.jpg",
+    page_icon="https://static-00.iconduck.com/assets.00/youtube-icon-2048x2048-wiwalbpx.png",
     menu_items={
         "Get help": "mailto:hikmetemreguler@gmail.com",
         "About": "For More Information\n" + "https://github.com/HikmetEmre/City_Estimator"
