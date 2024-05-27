@@ -50,7 +50,6 @@ if uploaded_files:
         # Step 3: Select and filter specific columns
         df_music = df_music[['Country','Asset Title', 'Custom ID','Asset ID', 'Asset Channel ID', 'Partner Revenue','Asset Labels']]
         df_music['Custom ID'] = df_music['Custom ID'].astype(str).str.lower()
-        df_music = df_music[df_music['Partner Revenue'] > 0]
 
         # Step 4: Define the custom mapping function
 
