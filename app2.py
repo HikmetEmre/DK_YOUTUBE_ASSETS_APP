@@ -39,8 +39,8 @@ if uploaded_files:
             df = pd.read_csv(uploaded_file, low_memory=False)
         elif 'df2.csv' in uploaded_file.name:
             df = pd.read_csv(uploaded_file, skiprows=1, low_memory=False)
-            elif'df3.csv' in uploaded_file.name:
-                df = pd.read_csv(uploaded_file, skiprows=1, low_memory=False)
+         elif'df3.csv' in uploaded_file.name:
+              df = pd.read_csv(uploaded_file, skiprows=1, low_memory=False)
         else:
             df = pd.read_csv(uploaded_file, low_memory=False)  # Default behavior for other files
         dfs.append(df)
