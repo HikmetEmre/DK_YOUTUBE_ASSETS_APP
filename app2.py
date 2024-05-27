@@ -53,7 +53,7 @@ if uploaded_files:
 
         # Step 4: Define the custom mapping function
 
-        def assign_producer(custom_id):
+ def assign_producer(custom_id):
     if 'tolga' in custom_id:
         return 'Tolga Ornek'
     elif 'anibera' in custom_id:
