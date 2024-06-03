@@ -313,11 +313,12 @@ if uploaded_files:
         else:
             st.write("Please fill in all fields.")
 
-     # Step 5: Create a selectbox to filter data by producer
-        unique_producers =  filtered_df_for_revenue['Producers'].unique()
-        selected_producer = st.selectbox('Select a producer', unique_producers)
+# Step 5: Create a selectbox to filter data by producer
 
-        if selected_producer:
+    unique_producers =  filtered_df_for_revenue['Producers'].unique()
+    selected_producer = st.selectbox('Select a producer', unique_producers)
+
+    if selected_producer:
             filtered_data =  filtered_df_for_revenue[ filtered_df_for_revenue['Producers'] == selected_producer]
             total_revenue = filtered_data['Partner Revenue'].sum()
 
@@ -333,5 +334,5 @@ if uploaded_files:
                 file_name=f'{selected_producer}_data.csv',
                 mime='text/csv'
             )
-        else :
-            st.write("Please select a producer from the dropdown.")    
+    else :
+        st.write("Please select a producer from the dropdown.")
