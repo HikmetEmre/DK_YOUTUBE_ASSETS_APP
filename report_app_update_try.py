@@ -333,3 +333,5 @@ if uploaded_files:
                 file_name=f'{selected_producer}_data.csv',
                 mime='text/csv'
             )
+        else :
+            st.write("Please select a producer from the dropdown.")    
