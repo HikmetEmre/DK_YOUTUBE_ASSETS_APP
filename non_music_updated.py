@@ -194,7 +194,7 @@ if uploaded_files:
         # Calculate DK Payment based on the producer
         percentage_dict = {
             'MuzikBir': 0.05, 
-            'Zeki Demirkubuz': 0.10, 
+            'Zeki Demirkubuz': 0.20, 
             'Nuri Bilge Ceylan': 0.20, 
             'Muhtesem Film': 0.20, 
             'Mns Film': 0.20, 
