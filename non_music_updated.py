@@ -201,7 +201,7 @@ if uploaded_files:
             'Muhtesem Film': 0.20, 
             'Mns Film': 0.20, 
             'Boyut Film': 0.20, 
-            'Anibera Tv': 2, 
+            'Anibera TV': 0.20, 
             'Tolga Ornek': 0.20,
             'Limit Yapım': 0.20,
             'Ubay': 0.20,
