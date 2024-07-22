@@ -78,9 +78,11 @@ if uploaded_files:
                 return 'MuzikBir'
             elif 'mnsfilm' in custom_id:
                 return 'Mns Film'
+            elif 'ubay' in custom_id:
+                return 'Ubay'
             else:
                 producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
-                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin']
+                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin','ubay']
                 for producer in producer_list:
                     if producer in custom_id:
                         return 'Daphne'
@@ -104,7 +106,7 @@ if uploaded_files:
             'Limit Yapım': 'Limit Yapım',
             'Sıfır Bir': 'Daphne',
             'Akıllı Bıdık': 'Daphne',
-            'Akıllı Bıdık': 'Daphne'
+            'Ubay': 'Ubay'
         }
 
         # Apply the mapping to the 'Custom ID' column based on 'Asset Labels'
@@ -114,7 +116,7 @@ if uploaded_files:
         )
 
         # List of values to filter
-        values_producers = ['Tolga Ornek', 'Boyut Film', 'Muhtesem Film', 'Anibera TV', 'Mns Film', 'MuzikBir', 'Daphne', 'Nuri Bilge Ceylan', 'Zeki Demirkubuz','Limit Yapım']
+        values_producers = ['Tolga Ornek', 'Boyut Film', 'Muhtesem Film', 'Anibera TV', 'Mns Film', 'MuzikBir', 'Daphne', 'Nuri Bilge Ceylan', 'Zeki Demirkubuz','Limit Yapım','Ubay']
 
         # Filter the DataFrame
         filtered_df_for_revenue = df_music[df_music['Custom ID'].isin(values_producers)]
@@ -202,6 +204,7 @@ if uploaded_files:
             'Anibera Tv': 0.20, 
             'Tolga Ornek': 0.20,
             'Limit Yapım': 0.20,
+            'Ubay': 0.20,
             'Daphne': 1
         }
 
