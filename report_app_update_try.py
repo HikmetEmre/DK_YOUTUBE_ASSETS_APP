@@ -195,7 +195,7 @@ if uploaded_files:
             st.write("First few rows of the unlabelled dataframe:")
             st.dataframe(filtered_df_unlabel)
                 
-            unknown_asset_ids = filtered_df_unlabel['Asset ID'].tolist()
+            unknown_asset_ids = filtered_df_unlabel['Asset ID'].unique().tolist()
             st.write(f"Unknown Asset ID's of This Month: {unknown_asset_ids}")
         else:
             st.write("There is no unidentified data for this month!")
