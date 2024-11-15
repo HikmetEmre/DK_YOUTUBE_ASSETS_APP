@@ -84,7 +84,7 @@ if uploaded_files:
                 return 'DocumentaryTv'
             else:
                 producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
-                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin','ubay','Documentary Tv']
+                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin','ubay','DocumentaryTv']
                 for producer in producer_list:
                     if producer in custom_id:
                         return 'Daphne'
@@ -119,7 +119,7 @@ if uploaded_files:
         )
 
         # List of values to filter
-        values_producers = ['Tolga Ornek', 'Boyut Film', 'Muhtesem Film', 'Anibera TV', 'Mns Film', 'MuzikBir', 'Daphne', 'Nuri Bilge Ceylan', 'Zeki Demirkubuz','Limit Yapım','Ubay']
+        values_producers = ['Tolga Ornek', 'Boyut Film', 'Muhtesem Film', 'Anibera TV', 'Mns Film', 'MuzikBir', 'Daphne', 'Nuri Bilge Ceylan', 'Zeki Demirkubuz','Limit Yapım','Ubay','DocumentaryTv']
 
         # Filter the DataFrame
         filtered_df_for_revenue = df_music[df_music['Custom ID'].isin(values_producers)]
@@ -209,7 +209,7 @@ if uploaded_files:
             'Limit Yapım': 0.20,
             'Ubay': 0.20,
             'Daphne': 1,
-            'Documentary Tv': 0.20
+            'DocumentaryTv': 0.20
         }
 
         # Function to calculate DK Payment
