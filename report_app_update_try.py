@@ -170,6 +170,7 @@ if uploaded_files:
             'Mehriban Aslan': 'MuzikBir',
             'İlqar Vuqarlı': 'MuzikBir',
             'Hüseyin Ali': 'MuzikBir',
+            'Çelik' : 'MuzikBir',
             'Müzikbir': 'MuzikBir'
         }
 
