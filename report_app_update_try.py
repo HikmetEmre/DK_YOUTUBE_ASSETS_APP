@@ -77,6 +77,8 @@ if uploaded_files:
                 return 'Yek Music'
             elif 'cocuk' in value:
                 return 'MuzikBir'
+            elif 'celik_' in value:
+                return 'MuzikBir'
             return value
 
         # Apply the custom function to the 'Custom ID' column
