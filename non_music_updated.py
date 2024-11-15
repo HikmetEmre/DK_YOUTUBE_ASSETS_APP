@@ -109,7 +109,7 @@ if uploaded_files:
             'Sıfır Bir': 'Daphne',
             'Akıllı Bıdık': 'Daphne',
             'Ubay': 'Ubay',
-            'DocumentaryTV': 'DocumentaryTv'
+            'DocumentaryTv': 'DocumentaryTv'
         }
 
         # Apply the mapping to the 'Custom ID' column based on 'Asset Labels'
