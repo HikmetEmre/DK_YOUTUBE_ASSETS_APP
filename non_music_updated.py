@@ -80,9 +80,11 @@ if uploaded_files:
                 return 'Mns Film'
             elif 'ubay' in custom_id:
                 return 'Ubay'
+            elif 'documentarytv_' in custom_id:
+                return 'DocumentaryTv'
             else:
                 producer_list = ['akillibidik', 'easyenglishathome', 'sifirbir', 'sokagincocuklari', 'ungfilm', 
-                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin','ubay']
+                                 'venharsagiroglu', 'hicdizisi', 'claudiaroberts', 'Ailin', 'GiantsofHistory', 'metinyegin','ubay','Documentary Tv']
                 for producer in producer_list:
                     if producer in custom_id:
                         return 'Daphne'
@@ -106,7 +108,8 @@ if uploaded_files:
             'Limit Yapım': 'Limit Yapım',
             'Sıfır Bir': 'Daphne',
             'Akıllı Bıdık': 'Daphne',
-            'Ubay': 'Ubay'
+            'Ubay': 'Ubay',
+            'DocumentaryTV: 'Documentary Tv'
         }
 
         # Apply the mapping to the 'Custom ID' column based on 'Asset Labels'
@@ -205,7 +208,8 @@ if uploaded_files:
             'Tolga Ornek': 0.20,
             'Limit Yapım': 0.20,
             'Ubay': 0.20,
-            'Daphne': 1
+            'Daphne': 1,
+            'Documentary Tv': 0.20
         }
 
         # Function to calculate DK Payment
